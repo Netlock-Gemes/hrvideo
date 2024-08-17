@@ -20,7 +20,7 @@ function App() {
 
     const visibility = cutTheLights ? 'hidden' : 'visible';
     const cursor = cutTheLights ? 'none' : 'auto';
-    const enableCutTheLights = () => setCutTheLights(true);
+    // const enableCutTheLights = () => setCutTheLights(true);
     const disableCutTheLights = () => setCutTheLights(false);
     const exitVideo = () => setVideoSelected(false);
 
@@ -72,31 +72,34 @@ function App() {
                     subtitleSrc={subtitleSrc}
                 />
                 <div className='App-Video-Actions' style={{ visibility }}>
-                    <SubtitleSelector onSubtitlePicked={setSubtitleSrc} />
-                    <button
+                    <div className=''>
+                        <SubtitleSelector onSubtitlePicked={setSubtitleSrc} />
+                        {/* <button
                         onClick={enableCutTheLights}
                         className='default-button'
                     >
                         Cut the lights
-                    </button>
-                    <button onClick={exitVideo} className='default-button'>
-                        <div
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '4px',
-                            }}
-                        >
-                            <span>Exit&nbsp;|&nbsp; Eject</span>
-                            <img
-                                src={eject}
-                                width='10px'
-                                height='10px'
-                                alt='eject'
-                            />
-                        </div>
-                    </button>
+                    </button> */}
+                        <button onClick={exitVideo} className='default-button'>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '4px',
+                                }}
+                            >
+                                <span>Exit&nbsp;|&nbsp; Eject</span>
+                                <img
+                                    src={eject}
+                                    width='10px'
+                                    height='10px'
+                                    alt='eject'
+                                />
+                            </div>
+                        </button>
+                    </div>
+
                     <p>
                         SRT and WebVTT Subtitle files supported &nbsp;|&nbsp;
                         Press <b>Arrow Keys</b> for Volume and Skips

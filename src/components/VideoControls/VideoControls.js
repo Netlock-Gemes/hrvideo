@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from 'react';
 import playIcon from '../../play.svg';
 import speakerIcon from '../../volume-up.svg';
@@ -67,7 +68,7 @@ const VideoControls = (props) => {
                 clearTimeout(timeoutHandle);
             }
 
-            timeoutHandle = setTimeout(hideControls, 1000);
+            timeoutHandle = setTimeout(hideControls, 3000);
         });
     }, [video, videoContainer]);
 
@@ -84,7 +85,6 @@ const VideoControls = (props) => {
         };
 
         document.addEventListener('fullscreenchange', adjustControlPosition);
-        // remove event listener after unmounting
         return () => {
             document.removeEventListener('keydown', adjustControlPosition);
         };
@@ -153,16 +153,19 @@ const VideoControls = (props) => {
                             className='click'
                         />
                     </button>
-                    <input
-                        type='range'
-                        ref={volumeSlider}
-                        className='volume'
-                        min={0}
-                        max={1}
-                        step='0.1'
-                        defaultValue={1}
-                        onChange={volumeChange}
-                    />
+                    <div className='input-container'>
+                        <input
+                            type='range'
+                            ref={volumeSlider}
+                            className='volume'
+                            min={0}
+                            max={1}
+                            step='0.1'
+                            defaultValue={1}
+                            onChange={volumeChange}
+                        />
+                    </div>
+
                     <button
                         onClick={toggleFullscreen}
                         className='control-button'
