@@ -64,8 +64,7 @@ function VideoSelector(props) {
                 }}
             />
             
-            <button onClick={onClick} className='w-64 flex bg-secondary justify-center items-center rounded-full text-black px-6 py-4 my-8 text-xl font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02] gap-2'>
-                {/* <img src={pressplay} width='30px' alt='Press Play icon' /> */}
+            <button onClick={onClick} className='sm:w-64 w-56 flex bg-secondary justify-center items-center rounded-full text-black sm:px-6 sm:py-4 px-3 py-2 my-8 text-xl font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02] gap-2'>
                 <FaVideo className='h-6 w-6' />
                 <span>Select Video File</span>
             </button>

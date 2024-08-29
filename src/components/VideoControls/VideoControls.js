@@ -161,10 +161,11 @@ const VideoControls = (props) => {
                     ></div>
                 </div>
                 <div className='flex items-center justify-between w-full'>
-                    <div className='flex justify-start items-center text-white text-sm w-1/3 cursor-default'>
-                        {realTime} / {totalDuration}
+                    <div className='flex gap-0.5 justify-start items-center text-white sm:text-sm text-xs sm:w-1/3 cursor-default'>
+                        <span>{realTime}</span>
+                        <span className='hidden sm:block'>/ {totalDuration}</span>
                     </div>
-                    <div className='flex justify-center items-center gap-6 w-1/3 text-white'>
+                    <div className='flex justify-center items-center sm:gap-6 gap-4 sm:w-1/3 text-white'>
                         <button
                             onClick={replay5}
                             className='flex items-center justify-center w-8 h-8 bg-transparent rounded-md cursor-pointer transition-colors duration-300 hover:text-teal-400'
@@ -189,7 +190,6 @@ const VideoControls = (props) => {
                         >
                             <IoPlaySkipForwardSharp className='h-5 w-5' />
                         </button>
-
                         <button
                             onClick={forward5}
                             className='flex items-center justify-center w-8 h-8 bg-transparent rounded-md cursor-pointer transition-colors duration-300 hover:text-teal-400'
@@ -198,8 +198,8 @@ const VideoControls = (props) => {
                         </button>
                     </div>
 
-                    <div className='flex w-1/3 justify-end items-center gap-3'>
-                        <div className='flex justify-center items-center text-white'>
+                    <div className='flex sm:w-1/3 justify-end items-center gap-3'>
+                        <div className='sm:flex hidden justify-center items-center text-white'>
                             <button
                                 onClick={muteVideo}
                                 className='flex items-center justify-center w-8 h-8 bg-transparent rounded-md cursor-pointer transition-colors duration-300 hover:text-teal-400'

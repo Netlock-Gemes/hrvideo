@@ -43,8 +43,8 @@ function SubtitleSelector(props) {
 
   return (
     <>
-      <button onClick={onClick} className='w-[40%] text-base flex bg-secondary justify-center items-center rounded-full text-black px-6 py-3 font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02] gap-2'>
-        <FaRegClosedCaptioning className='h-6 w-6' />
+      <button onClick={onClick} className='sm:w-[40%] text-xs sm:text-base flex bg-secondary justify-center items-center rounded-full text-black px-6 py-3 font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02] gap-2'>
+        <FaRegClosedCaptioning className='sm:h-6 sm:w-6 h-4 w-4' />
         <span>
           Add Subtitle file
         </span>
