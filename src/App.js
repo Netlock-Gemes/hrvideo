@@ -5,6 +5,8 @@ import VideoSelector from './components/VideoSelector/VideoSelector';
 import SubtitleSelector from './components/SubtitleSelector/SubtitleSelector';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 import DirectorySelector from './components/DirectorySelector/DirectorySelector';
+import { FaVideo } from "react-icons/fa";
+import { FaEject } from "react-icons/fa";
 import './CustomScrollbar.css';
 
 function App() {
@@ -35,14 +37,14 @@ function App() {
     const disableCutTheLights = () => setCutTheLights(false);
     const exitVideo = () => setVideoFiles([]);
 
-    const handleNextVideo = () => {
-        setCurrentVideoIndex((prevIndex) => {
-            const nextIndex = (prevIndex + 1) % videoFiles.length;
-            setVideoSrc(videoFiles[nextIndex].url);
-            setVideoName(videoFiles[nextIndex].name);
-            return nextIndex;
-        });
-    };
+    // const handleNextVideo = () => {
+    //     setCurrentVideoIndex((prevIndex) => {
+    //         const nextIndex = (prevIndex + 1) % videoFiles.length;
+    //         setVideoSrc(videoFiles[nextIndex].url);
+    //         setVideoName(videoFiles[nextIndex].name);
+    //         return nextIndex;
+    //     });
+    // };
 
     const handlePlaylistVideoSelect = (index) => {
         setCurrentVideoIndex(index);
@@ -90,32 +92,36 @@ function App() {
                     videoSrc={videoSrc}
                     subtitleSrc={subtitleSrc}
                 />
-                <div className={`flex flex-col items-center gap-4 mt-4 ${visibility}`}>
-                    <SubtitleSelector onSubtitlePicked={setSubtitleSrc} />
-                    <button onClick={handleNextVideo} className='px-3 py-3 mx-2 w-[300px] border-3 border-[#555] rounded-lg font-bold bg-[#a66efa] text-white hover:opacity-90'>
+                <div className='flex justify-center'>
+                    <div className='w-1/2'>
+                        <div className={`flex w-full justify-center items-center gap-8 mt-8 ${visibility}`}>
+                            <SubtitleSelector onSubtitlePicked={setSubtitleSrc} />
+                            {/* <button onClick={handleNextVideo} className='flex bg-secondary justify-center items-center rounded-full text-black px-6 py-3 my-8 font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02]'>
                         Next Video
-                    </button>
-                    <button onClick={exitVideo} className='px-3 py-3 mx-2 w-[300px] border-3 border-[#555] rounded-lg font-bold bg-[#a66efa] text-white hover:opacity-90'>
-                        <div className='flex items-center justify-center gap-1'>
-                            <span>Exit | Eject</span>
-                            <img src={eject} width='10px' height='10px' alt='eject' />
+                    </button> */}
+                            <button onClick={exitVideo} className='w-1/3 text-lg flex bg-secondary justify-center items-center rounded-full text-black px-6 py-3 font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02] gap-2'>
+                                <FaEject className='w-5 h-5' />
+                                <span>Exit | Eject File</span>
+                            </button>
                         </div>
-                    </button>
-                    <p className='mt-4'>SRT and WebVTT Subtitle files supported | Press <b>Arrow Keys</b> for Volume and Skips</p>
-                </div>
-                <div className='mt-5 flex flex-col items-center'>
-                    <h3 className='text-2xl font-bold mb-4'>Playlist</h3>
-                    <ul className='list-none p-0 w-1/2'>
-                        {videoFiles.map((file, index) => (
-                            <li
-                                key={index}
-                                className={`py-2 cursor-pointer border-b border-gray-300 ${index === currentVideoIndex ? 'bg-gray-200 font-bold' : ''}`}
-                                onClick={() => handlePlaylistVideoSelect(index)}
-                            >
-                                {file.name}
-                            </li>
-                        ))}
-                    </ul>
+                        <p className='mt-3 text-sm text-secondary'>SRT and WebVTT Subtitle files supported | Press <b>Arrow Keys</b> for Volume and Skips</p>
+                    </div>
+
+                    <div className='mt-5 mb-5 w-1/2 flex flex-col items-center border border-slate-500 rounded-lg m-2'>
+                        <h3 className='text-2xl font-bold py-2 bg-secondary/20 text-blue-400 w-full'>Playlist</h3>
+                        <ul className='list-none p-2 flex flex-col gap-0.5 justify-center items-center overflow-hidden text-secondary w-full border-t border-slate-300'>
+                            {videoFiles.map((file, index) => (
+                                <li
+                                    key={index}
+                                    className={`flex items-center gap-4 py-2 px-3 w-full text-start rounded-lg cursor-pointer transition-all duration-200 ease-in-out ${index === currentVideoIndex ? 'bg-blue-400/20 font-bold' : 'hover:bg-secondary/10'}`}
+                                    onClick={() => handlePlaylistVideoSelect(index)}
+                                >
+                                    <FaVideo className='w-6 h-6' />
+                                    {file.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </>
         );

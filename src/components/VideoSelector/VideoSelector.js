@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import pressplay from '../../playicon.png';
 import { FaVideo } from "react-icons/fa";
 
 function VideoSelector(props) {
