@@ -1,16 +1,17 @@
-.App {
+/* .App {
   background-color: #0e0c1d;
   color: #a66efa;
   min-height: 100vh;
-}
+} */
 
-.App .default-button {
+/* .App .default-button {
   background: #a66efa;
   border: 1px solid #a66efa;
   border-radius: 50px;
   cursor: pointer;
-}
+} */
 
+/* 
 .App a {
   color: #a66efa;
   opacity: 0.8;
@@ -24,7 +25,6 @@
   display: flex;
   justify-content: start;
   justify-items: center;
-  /* height: 50px; */
   padding: 20px;
   color: white;
 }
@@ -105,10 +105,10 @@
 
 .hide {
   display: none;
-}
+} */
 
 /* mobile view */
-@media (max-width: 720px) {
+/* @media (max-width: 720px) {
   .App-name {
     margin-left: 8px;
     font-size: 20px;
@@ -117,12 +117,36 @@
   .App-Feature-Notes {
     max-width: 400px;
   }
-}
+} */
 
 /* tablet view */
-@media (min-device-width: 600px) and (max-device-width: 1280px) {
+/* @media (min-device-width: 600px) and (max-device-width: 1280px) {
   .App-name {
     margin-left: 8px;
     font-size: 20px;
   }
+} */
+
+/* .App-Playlist {
+  margin-top: 20px;
 }
+
+.App-Playlist h3 {
+  margin: 0;
+}
+
+.App-Playlist ul {
+  list-style: none;
+  padding: 0;
+}
+
+.App-Playlist .playlist-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.App-Playlist .playlist-item.playing {
+  background-color: #ddd;
+  font-weight: bold;
+} */

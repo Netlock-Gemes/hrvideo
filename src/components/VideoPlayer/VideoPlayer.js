@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import KeyboardVideoControls from '../CustomVideoControls/CustomVideoControls';
 import VideoControls from '../VideoControls/VideoControls';
-import './VideoPlayer.css';
+// import './VideoPlayer.css';
 
 function VideoPlayer(props) {
     const { videoSrc, subtitleSrc, videoName } = props;
@@ -31,8 +31,8 @@ function VideoPlayer(props) {
     }, [video]);
 
     return (
-        <div className='VideoPlayer' ref={videoContainer}>
-            <video src={videoSrc} ref={video} autoPlay>
+        <div className='w-full h-[70vh] bg-black border-t-2 border-b-2 border-[#47345c]' ref={videoContainer}>
+            <video src={videoSrc} ref={video} autoPlay className='h-full w-full'>
                 <track kind='subtitles' src={subtitleSrc} default />
             </video>
             {videoPlayerControls}

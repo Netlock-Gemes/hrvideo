@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import './VideoSelector.css';
 import pressplay from '../../playicon.png';
+import { FaVideo } from "react-icons/fa";
 
 function VideoSelector(props) {
     const { onVideoPicked } = props;
@@ -56,7 +56,6 @@ function VideoSelector(props) {
             onDragEnter={onDrag}
             onDragOver={onDrag}
             onDragLeave={onDrag}
-            className='VideoSelector'
         >
             <div
                 style={{
@@ -66,17 +65,11 @@ function VideoSelector(props) {
                     display: dragActive ? 'block' : 'none',
                 }}
             />
-            <h2>
-                Why download a video player when you can simply play your videos
-                with the browser?
-            </h2>
-            <h5>
-                Your videos will not be uploaded anywhere, it's all happening on
-                your computer.
-            </h5>
-            <button onClick={onClick} className='default-button'>
-                <img src={pressplay} width='30px' alt='Press Play icon' />
-                &nbsp;<span>Select a video file</span>
+            
+            <button onClick={onClick} className='w-64 flex bg-secondary justify-center items-center rounded-full text-black px-6 py-4 my-8 text-xl font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02] gap-2'>
+                {/* <img src={pressplay} width='30px' alt='Press Play icon' /> */}
+                <FaVideo className='h-6 w-6' />
+                <span>Select Video File</span>
             </button>
             <input
                 type='file'
