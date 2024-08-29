@@ -1,152 +1,20 @@
-/* .App {
-  background-color: #0e0c1d;
-  color: #a66efa;
-  min-height: 100vh;
-} */
 
-/* .App .default-button {
-  background: #a66efa;
-  border: 1px solid #a66efa;
-  border-radius: 50px;
+
+
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #6600ff;
+  height: 17px;
+  width: 17px;
+  border-radius: 15px;
   cursor: pointer;
-} */
-
-/* 
-.App a {
-  color: #a66efa;
-  opacity: 0.8;
+  border: 2px solid #ffffff;
+  transition: box-shadow 0.3s ease;
 }
 
-.App .default-button:hover {
-  opacity: 0.9;
-}
-
-.App-header {
-  display: flex;
-  justify-content: start;
-  justify-items: center;
-  padding: 20px;
-  color: white;
-}
-
-.App-logo {
-  margin-left: 0;
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-}
-
-.App-logo span {
-  display: inline-flex;
-  align-items: center;
-  text-align: center;
+input[type='range']::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 10px #ffffff;
 }
 
 
-.App-icon {
-  display: inline-block;
-  text-align: center;
-  background-color: #a66efa;
-  padding: 5px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-}
-
-.App-name {
-  margin-left: 10px;
-  font-size: 18px;
-  font-weight: bolder;
-  vertical-align: super;
-  color: #a66efa;
-}
-
-.App-logo img {
-  margin: 5px auto;
-}
-
-.App-body {
-  text-align: center;
-}
-
-.App-Feature-Notes {
-  margin: 0 auto;
-  margin-top: 50px;
-  text-align: left;
-  max-width: 660px;
-}
-
-.App-Feature-Notes > div {
-  display: inline-block;
-  padding: 0 15px;
-  vertical-align: text-top;
-  font-size: 14px;
-  max-width: 300px;
-}
-
-
-.App-Video-Actions div{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-  gap: 8%;
-}
-
-.App-Video-Actions .default-button {
-  padding: 12px;
-  margin: 15px 5px;
-  width: 300px;
-  border: 3px solid #555;
-  border-radius: 14px;
-  font-weight: bold;
-  display: inline-block;
-}
-
-.hide {
-  display: none;
-} */
-
-/* mobile view */
-/* @media (max-width: 720px) {
-  .App-name {
-    margin-left: 8px;
-    font-size: 20px;
-  }
-
-  .App-Feature-Notes {
-    max-width: 400px;
-  }
-} */
-
-/* tablet view */
-/* @media (min-device-width: 600px) and (max-device-width: 1280px) {
-  .App-name {
-    margin-left: 8px;
-    font-size: 20px;
-  }
-} */
-
-/* .App-Playlist {
-  margin-top: 20px;
-}
-
-.App-Playlist h3 {
-  margin: 0;
-}
-
-.App-Playlist ul {
-  list-style: none;
-  padding: 0;
-}
-
-.App-Playlist .playlist-item {
-  padding: 10px;
-  cursor: pointer;
-  border-bottom: 1px solid #ccc;
-}
-
-.App-Playlist .playlist-item.playing {
-  background-color: #ddd;
-  font-weight: bold;
-} */

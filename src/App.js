@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import logo from './logo.png';
-import eject from './ejecticon.png';
 import VideoSelector from './components/VideoSelector/VideoSelector';
 import SubtitleSelector from './components/SubtitleSelector/SubtitleSelector';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
@@ -97,9 +96,9 @@ function App() {
                         <div className={`flex w-full justify-center items-center gap-8 mt-8 ${visibility}`}>
                             <SubtitleSelector onSubtitlePicked={setSubtitleSrc} />
                             {/* <button onClick={handleNextVideo} className='flex bg-secondary justify-center items-center rounded-full text-black px-6 py-3 my-8 font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02]'>
-                        Next Video
-                    </button> */}
-                            <button onClick={exitVideo} className='w-1/3 text-lg flex bg-secondary justify-center items-center rounded-full text-black px-6 py-3 font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02] gap-2'>
+                            Next Video
+                            </button> */}
+                            <button onClick={exitVideo} className='w-[40%] text-base flex bg-secondary justify-center items-center rounded-full text-black px-6 py-3 font-semibold transition-all duration-300 ease-in-out hover:bg-secondary/70 hover:shadow-[0px_2px_1px_1px] hover:shadow-cyan-300 hover:scale-[1.02] gap-2'>
                                 <FaEject className='w-5 h-5' />
                                 <span>Exit | Eject File</span>
                             </button>
@@ -107,8 +106,8 @@ function App() {
                         <p className='mt-3 text-sm text-secondary'>SRT and WebVTT Subtitle files supported | Press <b>Arrow Keys</b> for Volume and Skips</p>
                     </div>
 
-                    <div className='mt-5 mb-5 w-1/2 flex flex-col items-center border border-slate-500 rounded-lg m-2'>
-                        <h3 className='text-2xl font-bold py-2 bg-secondary/20 text-blue-400 w-full'>Playlist</h3>
+                    <div className='my-5 w-1/2 flex flex-col items-center border border-slate-500 rounded-lg mx-6'>
+                        <h3 className='text-2xl font-bold py-2 bg-secondary/20 text-teal-400 w-full'>Playlist</h3>
                         <ul className='list-none p-2 flex flex-col gap-0.5 justify-center items-center overflow-hidden text-secondary w-full border-t border-slate-300'>
                             {videoFiles.map((file, index) => (
                                 <li
@@ -134,7 +133,7 @@ function App() {
                     <div className='bg-[#a66efa] p-1.5 w-9 h-9 rounded-full flex justify-center items-center'>
                         <img src={logo} width='15px' alt='logo' className='w-5 h-5' />
                     </div>
-                    <span className='ml-2 text-[#a66efa] text-xl font-bold'>
+                    <span className='ml-2 text-[#a66efa] text-xl font-bold cursor-default'>
                         HRWells' Video Player
                     </span>
                 </div>

@@ -9,7 +9,6 @@ function VideoSelector(props) {
         if (!fileField.current) {
             return;
         }
-        // reset value, so 'onChange' always works
         fileField.current.value = '';
         fileField.current.click();
     };

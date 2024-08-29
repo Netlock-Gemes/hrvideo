@@ -98,7 +98,6 @@
 }
 
 input[type='range'] {
-    -webkit-appearance: none;
     height: 3.2px;
     width: 96%;
     border-radius: 4px;

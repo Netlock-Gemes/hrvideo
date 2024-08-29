@@ -2,7 +2,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import KeyboardVideoControls from '../CustomVideoControls/CustomVideoControls';
 import VideoControls from '../VideoControls/VideoControls';
-// import './VideoPlayer.css';
 
 function VideoPlayer(props) {
     const { videoSrc, subtitleSrc, videoName } = props;
