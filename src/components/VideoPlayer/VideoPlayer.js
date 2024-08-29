@@ -4,7 +4,7 @@ import KeyboardVideoControls from '../CustomVideoControls/CustomVideoControls';
 import VideoControls from '../VideoControls/VideoControls';
 
 function VideoPlayer(props) {
-    const { videoSrc, subtitleSrc, videoName } = props;
+    const { videoSrc, subtitleSrc, videoName, handleNextVideo, handlePreviousVideo } = props;
     const video = useRef(null);
     const [keyboardControls, setKeyboardControls] = useState(null);
     const [videoPlayerControls, setVideoControls] = useState(null);
@@ -24,6 +24,8 @@ function VideoPlayer(props) {
                     videoName={videoName}
                     video={video.current}
                     videoContainer={videoContainer.current}
+                    handleNextVideo={handleNextVideo}
+                    handlePreviousVideo={handlePreviousVideo}
                 />
             );
         }

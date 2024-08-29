@@ -45,6 +45,25 @@ function App() {
     //     });
     // };
 
+    const handleNextVideo = () => {
+        setCurrentVideoIndex((prevIndex) => {
+            const nextIndex = (prevIndex + 1) % videoFiles.length;
+            setVideoSrc(videoFiles[nextIndex].url);
+            setVideoName(videoFiles[nextIndex].name);
+            return nextIndex;
+        });
+    };
+
+    const handlePreviousVideo = () => {
+        setCurrentVideoIndex((prevIndex) => {
+            const previousIndex = (prevIndex - 1 + videoFiles.length) % videoFiles.length;
+            setVideoSrc(videoFiles[previousIndex].url);
+            setVideoName(videoFiles[previousIndex].name);
+            return previousIndex;
+        });
+    };
+
+
     const handlePlaylistVideoSelect = (index) => {
         setCurrentVideoIndex(index);
         setVideoSrc(videoFiles[index].url);
@@ -90,6 +109,8 @@ function App() {
                     videoName={videoName}
                     videoSrc={videoSrc}
                     subtitleSrc={subtitleSrc}
+                    handleNextVideo={handleNextVideo}
+                    handlePreviousVideo={handlePreviousVideo}
                 />
                 <div className='flex justify-center'>
                     <div className='w-1/2'>

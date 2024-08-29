@@ -1,17 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from 'react';
-import fullscreenIcon from '../../expand.svg';
-import disableFullscreenIcon from '../../compress.svg';
 import { secondsToTime } from '../CustomVideoControls/time';
 import { IoPlaySharp, IoPlaySkipBackSharp, IoPlaySkipForwardSharp, IoPauseSharp } from 'react-icons/io5';
 import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
-import { RiFullscreenExitFill, RiFullscreenFill } from 'react-icons/ri';
+import { RiForward5Fill, RiFullscreenExitFill, RiFullscreenFill, RiReplay5Fill } from 'react-icons/ri';
 import '../../App.css';
 
 let timeoutHandle = null;
 
 const VideoControls = (props) => {
-    const { video, videoContainer, videoName } = props;
+    const { video, videoContainer, videoName, handleNextVideo, handlePreviousVideo } = props;
     const [pausePlayIcon, setPauseplayIcon] = useState(<IoPlaySharp className='h-5 w-5' />);
     const [muteUnmuteIcon, setMuteUnmuteIcon] = useState(<FaVolumeUp className='h-5 w-5' />);
     const [enableDisableFullscreenIcon, setEnableDisableFullscreenIcon] = useState(<RiFullscreenFill className='h-5 w-5' />);
@@ -86,7 +84,22 @@ const VideoControls = (props) => {
 
         document.addEventListener('fullscreenchange', adjustControlPosition);
         return () => {
-            document.removeEventListener('keydown', adjustControlPosition);
+            document.removeEventListener('fullscreenchange', adjustControlPosition);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            const FULLSCREEN_KEY = 70; // 'f' key
+            if (e.keyCode === FULLSCREEN_KEY) {
+                e.preventDefault();
+                toggleFullscreen();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
 
@@ -114,9 +127,6 @@ const VideoControls = (props) => {
         } else {
             document.exitFullscreen();
         }
-        setEnableDisableFullscreenIcon(
-            document.fullscreenElement ? fullscreenIcon : disableFullscreenIcon
-        );
     };
 
     const scrub = (e) => {
@@ -124,6 +134,14 @@ const VideoControls = (props) => {
             (e.nativeEvent.offsetX / seek.current.offsetWidth) * 100;
         video.currentTime = (video.duration * seekPercentage) / 100;
     };
+
+    const replay5 = () =>{
+        video.currentTime = video.currentTime - 5
+    }
+    
+    const forward5 = () =>{
+        video.currentTime = video.currentTime + 5
+    }
 
     return (
         <div>
@@ -148,7 +166,13 @@ const VideoControls = (props) => {
                     </div>
                     <div className='flex justify-center items-center gap-6 w-1/3 text-white'>
                         <button
-                            onClick={playVideo}
+                            onClick={replay5}
+                            className='flex items-center justify-center w-8 h-8 bg-transparent rounded-md cursor-pointer transition-colors duration-300 hover:text-teal-400'
+                        >
+                            <RiReplay5Fill className='h-5 w-5' />
+                        </button>
+                        <button
+                            onClick={handlePreviousVideo}
                             className='flex items-center justify-center w-8 h-8 bg-transparent rounded-md cursor-pointer transition-colors duration-300 hover:text-teal-400'
                         >
                             <IoPlaySkipBackSharp className='h-5 w-5' />
@@ -160,10 +184,17 @@ const VideoControls = (props) => {
                             {pausePlayIcon}
                         </button>
                         <button
-                            onClick={playVideo}
+                            onClick={handleNextVideo}
                             className='flex items-center justify-center w-8 h-8 bg-transparent rounded-md cursor-pointer transition-colors duration-300 hover:text-teal-400'
                         >
                             <IoPlaySkipForwardSharp className='h-5 w-5' />
+                        </button>
+
+                        <button
+                            onClick={forward5}
+                            className='flex items-center justify-center w-8 h-8 bg-transparent rounded-md cursor-pointer transition-colors duration-300 hover:text-teal-400'
+                        >
+                            <RiForward5Fill className='h-5 w-5' />
                         </button>
                     </div>
 
