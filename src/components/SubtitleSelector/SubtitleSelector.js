@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import srt2vtt from './srt2vtt';
 import { FaRegClosedCaptioning } from "react-icons/fa";
-import './SubtitleSelector.css';
 
 function SubtitleSelector(props) {
   const { onSubtitlePicked } = props;
@@ -10,7 +9,6 @@ function SubtitleSelector(props) {
     if (!fileField.current) {
       return;
     }
-    // reset value, so 'onChange' always works
     fileField.current.value = '';
     fileField.current.click();
   };
@@ -22,13 +20,11 @@ function SubtitleSelector(props) {
 
     const file = e.target.files[0];
     if (!file.name.endsWith('.srt')) {
-      // we'll assume it's vtt
       const objectURL = URL.createObjectURL(file);
       onSubtitlePicked(objectURL);
       return;
     }
 
-    // .srt isn't support by browsers so we need to convert to vtt
     const reader = new FileReader();
     reader.onload = function (e) {
       const converted = srt2vtt(e.target.result);

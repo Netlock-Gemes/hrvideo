@@ -37,7 +37,6 @@ function CustomVideoControls(props) {
     setAmplifier(getAmplifier(video));
   }, [video]);
 
-  // volume control
   useEffect(() => {
     if (!amplifier) {
       return;
@@ -53,22 +52,18 @@ function CustomVideoControls(props) {
       e.preventDefault();
       if (e.keyCode === UP_KEY) {
         if (video.volume < 1) {
-          // regular volume increase
           video.volume = Math.min(video.volume + 0.1, 1);
         } else if (volumeMultiplier < 4) {
-          // vlc type volume amplification
           const newVolumeMultiplier = Math.min(volumeMultiplier + 0.1, 4);
           setVolumeMultiplier(newVolumeMultiplier);
           amplifier.amplify(newVolumeMultiplier);
         }
       } else if (e.keyCode === DOWN_KEY) {
         if (volumeMultiplier > 1) {
-          // bring volume amplification down towards 1
           const newVolumeMultiplier = Math.max(volumeMultiplier - 0.1, 1);
           setVolumeMultiplier(newVolumeMultiplier);
           amplifier.amplify(newVolumeMultiplier);
         } else if (video.volume > 0) {
-          // bring volume down towards 0
           video.volume = Math.max(video.volume - 0.1, 0);
         }
       }
@@ -77,13 +72,11 @@ function CustomVideoControls(props) {
     };
 
     document.addEventListener('keydown', adjustVolume);
-    // remove event listener after unmounting
     return () => {
       document.removeEventListener('keydown', adjustVolume);
     };
   }, [video, amplifier, volumeMultiplier]);
 
-  // video time control
   useEffect(() => {
     const adjustVideoTime = (e) => {
       const FORWARD_KEY = 39;
@@ -94,10 +87,8 @@ function CustomVideoControls(props) {
 
       e.preventDefault();
       if (e.keyCode === FORWARD_KEY) {
-        // move forward by 5 seconds
         video.currentTime = Math.min(video.duration, video.currentTime + 5);
       } else if (e.keyCode === BACKWARD_KEY) {
-        // move backward by 5 seconds
         video.currentTime = Math.max(0, video.currentTime - 5);
       }
 
@@ -105,13 +96,11 @@ function CustomVideoControls(props) {
     };
 
     document.addEventListener('keydown', adjustVideoTime);
-    // remove event listener after unmounting
     return () => {
       document.removeEventListener('keydown', adjustVideoTime);
     };
   }, [video]);
 
-  // spacebar play-pause control
   useEffect(() => {
     const playOrPause = (e) => {
       const SPACEBAR_KEY = 32;
@@ -124,7 +113,6 @@ function CustomVideoControls(props) {
       }
     }
     document.addEventListener('keydown', playOrPause);
-    // remove event listener after unmounting
     return () => {
       document.removeEventListener('keydown', playOrPause);
     };
