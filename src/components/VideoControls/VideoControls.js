@@ -22,7 +22,7 @@ const VideoControls = (props) => {
     const controls = useRef(null);
     const videoStorageKey = `vid--name--${videoName}`;
 
-    const [bottom, setBottom] = useState("bottom-[9.3rem]")
+    const [bottom, setBottom] = useState("bottom-[0.7rem]")
 
     const playVideo = () => {
         if (video.paused) {
@@ -66,7 +66,7 @@ const VideoControls = (props) => {
                 clearTimeout(timeoutHandle);
             }
 
-            timeoutHandle = setTimeout(hideControls, 3000);
+            timeoutHandle = setTimeout(hideControls, 2500);
         });
     }, [video, videoContainer]);
 
@@ -74,10 +74,10 @@ const VideoControls = (props) => {
         const adjustControlPosition = () => {
             if (!controls?.current) return;
             if (document.fullscreenElement === null) {
-                setBottom("bottom-[9.3rem]")
+                setBottom("bottom-[0.7rem]")
                 setEnableDisableFullscreenIcon(<RiFullscreenFill className='h-5 w-5' />);
             } else {
-                setBottom("bottom-[4rem]")
+                setBottom("bottom-[2rem]")
                 setEnableDisableFullscreenIcon(<RiFullscreenExitFill className='h-5 w-5' />);
             }
         };
@@ -90,7 +90,7 @@ const VideoControls = (props) => {
 
     useEffect(() => {
         const handleKeyDown = (e) => {
-            const FULLSCREEN_KEY = 70; // 'f' key
+            const FULLSCREEN_KEY = 70;
             if (e.keyCode === FULLSCREEN_KEY) {
                 e.preventDefault();
                 toggleFullscreen();
@@ -144,9 +144,8 @@ const VideoControls = (props) => {
     }
 
     return (
-        <div>
             <div
-                className={`${bottom} backdrop-blur-md absolute left-1/2 transform -translate-x-1/2 bg-primary/70 rounded-lg px-4 py-2 w-11/12 md:w-3/5 flex flex-col items-center opacity-0 transition-opacity duration-300`}
+                className={`${bottom} backdrop-blur-md absolute left-1/2 transform -translate-x-1/2 bg-primary/70 rounded-lg px-4 py-2 w-[96vw] lg:w-[70vw] flex flex-col items-center opacity-0 transition-opacity duration-300`}
                 ref={controls}
             >
                 <div
@@ -226,7 +225,6 @@ const VideoControls = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 
