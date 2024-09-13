@@ -4,8 +4,7 @@ import VideoSelector from './components/VideoSelector/VideoSelector';
 import SubtitleSelector from './components/SubtitleSelector/SubtitleSelector';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 import DirectorySelector from './components/DirectorySelector/DirectorySelector';
-import { FaVideo } from "react-icons/fa";
-import { FaEject } from "react-icons/fa";
+import { FaVideo, FaEject } from "react-icons/fa";
 import './CustomScrollbar.css';
 
 function App() {
@@ -16,6 +15,8 @@ function App() {
     const [videoName, setVideoName] = useState('');
     const [videoSrc, setVideoSrc] = useState('');
 
+    const supportedVideoExtensions = ['.mp4', '.mkv', '.avi', '.mov', '.webm', '.flv'];
+
     const onVideoPicked = (videoUrl, videoName) => {
         setVideoFiles([{ url: videoUrl, name: videoName }]);
         setCurrentVideoIndex(0);
@@ -24,11 +25,16 @@ function App() {
     };
 
     const onFilesPicked = (files) => {
-        setVideoFiles(files);
+        const filteredFiles = files.filter(file => {
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            return supportedVideoExtensions.includes(`.${fileExtension}`);
+        });
+
+        setVideoFiles(filteredFiles);
         setCurrentVideoIndex(0);
-        if (files.length > 0) {
-            setVideoSrc(files[0].url);
-            setVideoName(files[0].name);
+        if (filteredFiles.length > 0) {
+            setVideoSrc(filteredFiles[0].url);
+            setVideoName(filteredFiles[0].name);
         }
     };
 
@@ -53,7 +59,6 @@ function App() {
             return previousIndex;
         });
     };
-
 
     const handlePlaylistVideoSelect = (index) => {
         setCurrentVideoIndex(index);
