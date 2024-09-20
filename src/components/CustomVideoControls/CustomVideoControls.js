@@ -1,46 +1,56 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getAmplifier } from './volume';
 import { secondsToTime } from './time';
-import './CustomVideoControls.css';
 
 function CustomVideoControls(props) {
   const { video } = props;
   const [volumeMultiplier, setVolumeMultiplier] = useState(1);
   const [showVolume, setShowVolume] = useState(false);
+  const [volumeDisplay, setVolumeDisplay] = useState(0);
   const [showVideoTime, setShowVideoTime] = useState(false);
+  const [videoTimeDisplay, setVideoTimeDisplay] = useState('');
   const [amplifier, setAmplifier] = useState(null);
 
-  const displayVolume = () => {
+  const displayVolume = useCallback((newVolume) => {
+    setVolumeDisplay(newVolume);
     setShowVolume(true);
-    setTimeout(() => {
-      setShowVolume(false);
-    }, 1000);
-  };
 
-  const displayVideoTime = () => {
+    const timeoutId = setTimeout(() => {
+      setShowVolume(false);
+    }, 3000);
+
+    return timeoutId;
+  }, []);
+
+  const displayVideoTime = useCallback((currentTime) => {
+    setVideoTimeDisplay(`${secondsToTime(currentTime)} / ${secondsToTime(video.duration)}`);
     setShowVideoTime(true);
-    setTimeout(() => {
+
+    const timeoutId = setTimeout(() => {
       setShowVideoTime(false);
-    }, 1000);
-  };
+    }, 3000);
+
+    return timeoutId;
+  }, [video.duration]);
 
   const playVideo = () => {
     if (video.paused) {
-        video.play();
+      video.play();
     } else {
-        video.pause();
+      video.pause();
     }
   };
 
   useEffect(() => {
-    setAmplifier(getAmplifier(video));
+    const amp = getAmplifier(video);
+    setAmplifier(amp);
   }, [video]);
 
   useEffect(() => {
-    if (!amplifier) {
-      return;
-    }
+    if (!amplifier) return;
+
+    let volumeTimeoutId;
 
     const adjustVolume = (e) => {
       const UP_KEY = 38;
@@ -68,16 +78,26 @@ function CustomVideoControls(props) {
         }
       }
 
-      displayVolume();
+      const newVolumeDisplay = (video.volume * volumeMultiplier * 100).toFixed(0);
+      
+      if (volumeTimeoutId) {
+        clearTimeout(volumeTimeoutId);
+      }
+      volumeTimeoutId = displayVolume(newVolumeDisplay);
     };
 
     document.addEventListener('keydown', adjustVolume);
     return () => {
       document.removeEventListener('keydown', adjustVolume);
+      if (volumeTimeoutId) {
+        clearTimeout(volumeTimeoutId);
+      }
     };
-  }, [video, amplifier, volumeMultiplier]);
+  }, [video, amplifier, volumeMultiplier, displayVolume]);
 
   useEffect(() => {
+    let videoTimeTimeoutId;
+
     const adjustVideoTime = (e) => {
       const FORWARD_KEY = 39;
       const BACKWARD_KEY = 37;
@@ -92,14 +112,20 @@ function CustomVideoControls(props) {
         video.currentTime = Math.max(0, video.currentTime - 5);
       }
 
-      displayVideoTime();
+      if (videoTimeTimeoutId) {
+        clearTimeout(videoTimeTimeoutId);
+      }
+      videoTimeTimeoutId = displayVideoTime(video.currentTime);
     };
 
     document.addEventListener('keydown', adjustVideoTime);
     return () => {
       document.removeEventListener('keydown', adjustVideoTime);
+      if (videoTimeTimeoutId) {
+        clearTimeout(videoTimeTimeoutId);
+      }
     };
-  }, [video]);
+  }, [video, displayVideoTime]);
 
   useEffect(() => {
     const playOrPause = (e) => {
@@ -108,33 +134,20 @@ function CustomVideoControls(props) {
         return;
       }
       e.preventDefault();
-      if (e.keyCode === SPACEBAR_KEY) {
-        playVideo();
-      }
-    }
+      playVideo();
+    };
+
     document.addEventListener('keydown', playOrPause);
     return () => {
       document.removeEventListener('keydown', playOrPause);
     };
-  }, [video])
+  }, [video]);
 
-  if (showVolume) {
-    return (
-      <div className='CustomVideoControls'>
-        {(video.volume * volumeMultiplier * 100).toFixed(0)}%
-      </div>
-    );
-  }
-
-  if (showVideoTime) {
-    return (
-      <div className='CustomVideoControls'>
-        {secondsToTime(video.currentTime)} / {secondsToTime(video.duration)}
-      </div>
-    );
-  }
-
-  return null;
+  return (
+    <div className='absolute top-5 right-6 font-bold text-white'>
+      {showVolume ? `${volumeDisplay}%` : showVideoTime ? videoTimeDisplay : null}
+    </div>
+  );
 }
 
 export default CustomVideoControls;
