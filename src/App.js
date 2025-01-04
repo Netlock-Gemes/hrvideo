@@ -91,9 +91,14 @@ function App() {
                 </div>
                 <div className='sm:w-1/2 flex flex-col gap-2'>
                     <p className='font-bold'>WHY WAS THIS BUILT?</p>
-                    <p className=''>1. An abridged version of why HRWells' Video Player was built</p>
-                    <p className=''>2. A more detailed version of why HRWells' Video Player was built.</p>
+                    <p className=''>
+                        1. HRWells' Video Player was built to provide a simple, browser-based alternative to traditional video players.
+                    </p>
+                    <p className=''>
+                        2. It offers key features like subtitle support, keyboard controls, and enhanced volume, all without needing additional software.
+                    </p>
                 </div>
+
             </div>
         </>
     );
