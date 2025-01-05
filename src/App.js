@@ -98,7 +98,6 @@ function App() {
                         2. It offers key features like subtitle support, keyboard controls, and enhanced volume, all without needing additional software.
                     </p>
                 </div>
-
             </div>
         </>
     );
